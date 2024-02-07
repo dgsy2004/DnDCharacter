@@ -1,1 +1,49 @@
 
+<!DOCTYPE html>
+<html>
+    <head>
+        <title></title>
+    <body>
+        <div class="main-div">
+        <?php require_once 'create.php';?> 
+            <div>
+                <h2>Character Stats</h2>
+            <?php 
+                
+
+            ?>
+            </div>
+            <div class="content-wrapper">
+                <button id="create-stat">Create Stat </button>
+                <button id="update-stat">Update Stat </button>
+                <button id="delete-stat">Delete Stat </button>
+
+                <form action="create_stat.php" method="POST" id="create-stat-form">
+                    <input type="text" placeholder="Enter ID" name="create-stat-ID"/><br>
+                    <input type="int" placeholder="Strength" name="create-strength"><br>
+                    <input type="int" placeholder="Dexterity" name="create-dexterity"><br>
+                    <input type="int" placeholder="Constitution" name="create-constitution"><br>
+                    <input type="int" placeholder="Intelligence" name="create-intelligence"><br>
+                    <input type="int" placeholder="Wisdom" name="wisdom"><br>
+                    <input type="int" placeholder="Charisma" name="charisma"><br>
+                    <input type="submit" value="Save" name="create-stat-button" class="small-button">
+                </form>
+                <form action="update_stat.php" method="POST" id="update-stat-form">
+                    <input type="text" placeholder="Enter ID" name="update-stat-ID"/><br>
+                    <input type="int" placeholder="Strength" name="update-strength"><br>
+                    <input type="int" placeholder="Dexterity" name="update-dexterity"><br>
+                    <input type="int" placeholder="Constitution" name="update-constitution"><br>
+                    <input type="int" placeholder="Intelligence" name="update-intelligence"><br>
+                    <input type="int" placeholder="Wisdom" name="update-wisdom"><br>
+                    <input type="int" placeholder="Charisma" name="update-charisma"><br>
+                    <input type="submit" value="Save" name="update-stat-button" class="small-button">
+                </form>
+                <form action="delete_stat.php" method="POST" id="delete-stat-form">
+                    <input type="text" placeholder="Enter ID" name="delete-ID"/><br>
+                    <input type="submit" value="Save" name="submit-delete" class="small-button"/>
+                </form>
+
+            </div>
+        </div>
+    </body>
+</html>
