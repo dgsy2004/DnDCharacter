@@ -5,7 +5,7 @@
         $servername = 'localhost';
         $username = 'root';
         $password = '';
-        $databasename = 'characterstats';
+        $databasename = 'dndcharacters';
 
         //creating connection to database
 
