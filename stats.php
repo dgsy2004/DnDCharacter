@@ -12,7 +12,7 @@
                 margin: 0 auto;
             }
             
-            h2 {
+            h2, h3 {
                 text-align: center;
             }
 
@@ -58,70 +58,71 @@
                 height: 32px
             }
         </style>
+    </head>
     <body>
         <div class="main-div">
-        <?php require_once 'createStats.php';?> 
-            <div>
-                <h2>Character Stats</h2>
-                <?php 
-                    $servername = 'localhost';
-                    $username = 'root';
-                    $password = '';
-                    $databasename = 'characterstats';
-            
-                    //creating connection to database
-            
-                    $connection = mysqli_connect($servername, $username, $password, $databasename);
-                    //chech if connection was successful
-                    if(!$connection){
-                        die('connection failed: '.mysqli_connect_error());
-                    }
+            <?php require_once 'createStats.php';?> 
+                <div>
+                    <h2>Character Stats</h2>
+                    <?php 
+                        $servername = 'localhost';
+                        $username = 'root';
+                        $password = '';
+                        $databasename = 'dndcharacters';
+                
+                        //creating connection to database
+                
+                        $connection = mysqli_connect($servername, $username, $password, $databasename);
+                        //chech if connection was successful
+                        if(!$connection){
+                            die('connection failed: '.mysqli_connect_error());
+                        }
 
 
-                //query the table for the records
-                $sql = "SELECT * FROM character_stat"; //set up our query
-                $result = mysqli_query($connection, $sql); //store result of query into $result
-                $rowCount = mysqli_num_rows($result);
+                    //query the table for the records
+                    $sql = "SELECT * FROM character_stat"; //set up our query
+                    $result = mysqli_query($connection, $sql); //store result of query into $result
+                    $rowCount = mysqli_num_rows($result);
 
-                    if($rowCount > 0) {
-                        echo "
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th>ID</th>
-                                    <th>Strength</th>
-                                    <th>Dexterity</th>
-                                    <th>Constitution</th>
-                                    <th>Intelligence</th>
-                                    <th>Wisdom</th>
-                                    <th>Charisma</th>
-                                </tr>
-                            </thead>  
-                        ";
-                    }
-                ?>
-                <?php 
-                //fetches us associated information from database
-                    while ($row = $result -> fetch_assoc()): ?> 
-                        <tr>
-                            <td><?php echo $row['ID']?></td>
-                            <td><?php echo $row['Strength']?></td>
-                            <td><?php echo $row['Dexterity']?></td>
-                            <td><?php echo $row['Constitution']?></td>
-                            <td><?php echo $row['Intelligence']?></td>
-                            <td><?php echo $row['Wisdom']?></td>
-                            <td><?php echo $row['Charisma']?></td>
-                        </tr>
-                    <?php endwhile;
+                        if($rowCount > 0) {
+                            echo "
+                                    <table>
+                                        <thead>
+                                            <tr>
+                                                <th>ID</th>
+                                                <th>Strength</th>
+                                                <th>Dexterity</th>
+                                                <th>Constitution</th>
+                                                <th>Intelligence</th>
+                                                <th>Wisdom</th>
+                                                <th>Charisma</th>
+                                            </tr>
+                                        </thead>  
+                                    </table>
+                                ";
+                        }
                     ?>
-                </table>
-            </div>
+                    <?php 
+                    //fetches us associated information from database
+                        while ($row = $result -> fetch_assoc()): ?> 
+                            <tr>
+                                <td><?php echo $row['ID']?></td>
+                                <td><?php echo $row['Strength']?></td>
+                                <td><?php echo $row['Dexterity']?></td>
+                                <td><?php echo $row['Constitution']?></td>
+                                <td><?php echo $row['Intelligence']?></td>
+                                <td><?php echo $row['Wisdom']?></td>
+                                <td><?php echo $row['Charisma']?></td>
+                            </tr>                    
+                        <?php endwhile;?>
+                </div>
                 <div class="content-wrapper">
                     <button id="create-stat-button">Create Stat</button>
                     <button id="update-stat-button">Update Stat</button>
                     <button id="delete-stat-button">Delete Stat</button>
 
                     <form action="create_stat.php" method="POST" id="create-stat-form">
+                        <h3>Create Stat</h3>
                         <input type="text" placeholder="Enter ID" name="create-stat-ID"/><br>
                         <input type="int" placeholder="Strength" name="create-strength"><br>
                         <input type="int" placeholder="Dexterity" name="create-dexterity"><br>
@@ -132,6 +133,7 @@
                         <input type="submit" value="Save" name="create-stat-button" class="small-button">
                     </form>
                     <form action="update_stat.php" method="POST" id="update-stat-form">
+                        <h3>Update Stat</h3>
                         <input type="text" placeholder="Enter ID" name="update-stat-ID"/><br>
                         <input type="int" placeholder="Strength" name="update-strength"><br>
                         <input type="int" placeholder="Dexterity" name="update-dexterity"><br>
@@ -142,13 +144,13 @@
                         <input type="submit" value="Save" name="update-stat-button" class="small-button">
                     </form>
                     <form action="delete_stat.php" method="POST" id="delete-stat-form">
-                        <input type="text" placeholder="Enter ID" name="delete-ID"/><br>
+                        <h3>Delete Stat</h3>
+                        <input type="text" placeholder="Enter ID" name="delete-stat-ID"/><br>
                         <input type="submit" value="Save" name="submit-delete" class="small-button"/>
                     </form>
-
                 </div>
-            </div>
-        <script src="statScript.js"></script>
+        </div>
+        <script src="script.js"></script>
     </body>
 </html>
 
